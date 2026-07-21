@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking & Dashboards</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; }
+        .navbar { background-color: #002e62; border-bottom: 4px solid #ffb81c; padding: 15px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+        .nav-brand { color: #fff; font-size: 1.3em; font-weight: bold; }
+        .nav-brand span { color: #ffb81c; }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .nav-links a { color: #fff; text-decoration: none; padding: 8px 12px; border-radius: 4px; font-size: 0.9em; font-weight: 600; transition: background 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background-color: #ffb81c; color: #002e62; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .tracker-grid { display: grid; grid-template-columns: 1fr 320px; gap: 25px; }
+        .panel { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); height: fit-content; }
+        h2 { color: #002e62; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        .tracker-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .tracker-row:last-child { border-bottom: none; }
+        .row-info { display: flex; align-items: center; gap: 12px; }
+        input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+        .lbl { font-weight: 600; color: #444; }
+        .wt-tag { font-size: 0.8em; background: #e1e7ed; color: #002e62; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .score-input { width: 60px; padding: 6px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; }
+        .dashboard-metric { text-align: center; margin-bottom: 25px; background: #f8fafc; padding: 20px; border-radius: 6px; border: 1px solid #e1e7ed; }
+        .metric-val { font-size: 2.5em; font-weight: bold; color: #002e62; }
+        .metric-lbl { font-size: 0.8em; font-weight: bold; color: #666; text-transform: uppercase; margin-top: 5px; }
+        @media(max-width: 850px) {
+            .tracker-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-brand">Bucknell <span>GISP-E Portal</span></div>
+    <div class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="courses.html">BU Courses</a>
+        <a href="workshops.html">Hands-On Workshops</a>
+        <a href="online-training.html">Web Training</a>
+        <a href="study-guide.html">Study Guide</a>
+        <a href="exam.html">Practice Exam</a>
+        <a href="quiz.html">Mastery Quiz</a>
+        <a href="tracker.html" class="active">Progress Tracker</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Student Progress Tracking Tool</h1>
+    <p>Use this interactive interface blueprint to log your training status parameters and calculate your estimated readiness score thresholds.</p>
+
+    <div class="tracker-grid">
+        <div class="panel">
+            <h2>Blueprint Progress Checklist</h2>
+            
+            <div class="tracker-row">
+                <div class="row-info">
+                    <input type="checkbox" id="c1" onchange="calcReady()">
+                    <span class="lbl">Workshop 1: Geodesy & Coordinates</span>
+                </div>
+                <span class="wt-tag">Category 2 Module</span>
+            </div>
+            <div class="tracker-row">
+                <div class="row-info">
+                    <input type="checkbox" id="c2" onchange="calcReady()">
+                    <span class="lbl">Workshop 2: Data Models & Topology</span>
+                </div>
+                <span class="wt-tag">Category 3 & 4 Module</span>
+            </div>
+            <div class="tracker-row">
+                <div class="row-info">
+                    <input type="checkbox" id="c3" onchange="calcReady()">
+                    <span class="lbl">Workshop 3: Cartography & Classification</span>
+                </div>
+                <span class="wt-tag">Category 5 Module</span>
+            </div>
+            <div class="tracker-row">
+                <div class="row-info">
+                    <input type="checkbox" id="c4" onchange="calcReady()">
+                    <span class="lbl">Workshop 4: Remote Sensing & Pixels</span>
+                </div>
+                <span class="wt-tag">Category 6 Module</span>
+            </div>
+            <div class="tracker-row">
+                <div class="row-info">
+                    <input type="checkbox" id="c5" onchange="calcReady()">
+                    <span class="lbl">Workshop 5: Vector Overlays & Statistics</span>
+                </div>
+                <span class="wt-tag">Category 1 Module</span>
+            </div>
+            <div class="tracker-row">
+                <div class="row-info">
+                    <input type="checkbox" id="c6" onchange="calcReady()">
+                    <span class="lbl">Workshop 6: Web GIS & Ethics Logs</span>
+                </div>
+                <span class="wt-tag">Category 7, 10, 11 Module</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel">
+                <h2>Readiness Metric</h2>
+                <div class="dashboard-metric">
+                    <div class="metric-val" id="modCount">0 / 6</div>
+                    <div class="metric-lbl">Workshops Completed</div>
+                </div>
+                
+                <h2>Mock Performance</h2>
+                <div class="tracker-row" style="border:none; padding:0;">
+                    <span class="lbl">Latest Mock Score:</span>
+                    <input type="number" class="score-input" id="mockScore" value="0" min="0" max="100" oninput="calcReady()">
+                    <span class="lbl">%</span>
+                </div>
+                <div class="dashboard-metric" style="margin-top:20px; border-left: 4px solid #ffb81c;">
+                    <div class="metric-val" id="statusVal" style="font-size:1.8em; color:#d9534f;">NOT READY</div>
+                    <div class="metric-lbl">Current Portal Status</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calcReady() {
+        let checked = 0;
+        for(let i=1; i<=6; i++) {
+            if(document.getElementById('c' + i).checked) checked++;
+        }
+        document.getElementById('modCount').innerHTML = checked + " / 6";
+        
+        let mock = parseInt(document.getElementById('mockScore').value) || 0;
+        let statusBox = document.getElementById('statusVal');
+        
+        if(checked === 6 && mock >= 70) {
+            statusBox.innerHTML = "PASSED / READY";
+            statusBox.style.color = "#28a745";
+        } else if (checked > 3 || mock >= 50) {
+            statusBox.innerHTML = "IN PROGRESS";
+            statusBox.style.color = "#f0ad4e";
+        } else {
+            statusBox.innerHTML = "NOT READY";
+            statusBox.style.color = "#d9534f";
+        }
+    }
+</script>
+
+</body>
+</html>
