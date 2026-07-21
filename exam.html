@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment: 75-Question Mock Exam</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; }
+        .navbar { background-color: #002e62; border-bottom: 4px solid #ffb81c; padding: 15px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+        .nav-brand { color: #fff; font-size: 1.3em; font-weight: bold; }
+        .nav-brand span { color: #ffb81c; }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .nav-links a { color: #fff; text-decoration: none; padding: 8px 12px; border-radius: 4px; font-size: 0.9em; font-weight: 600; transition: background 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background-color: #ffb81c; color: #002e62; }
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .exam-gate { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid #ffb81c; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 25px 0; }
+        .meta-box { background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e1e7ed; }
+        .meta-box div:first-child { font-size: 1.5em; font-weight: bold; color: #002e62; }
+        .meta-box div:last-child { font-size: 0.85em; color: #666; font-weight: 600; text-transform: uppercase; }
+        .start-btn { background: #002e62; color: #fff; border: none; padding: 15px 30px; font-size: 1.1em; font-weight: bold; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+        .start-btn:hover { background: #001c3d; color: #ffb81c; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-brand">Bucknell <span>GISP-E Portal</span></div>
+    <div class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="courses.html">BU Courses</a>
+        <a href="workshops.html">Hands-On Workshops</a>
+        <a href="online-training.html">Web Training</a>
+        <a href="study-guide.html">Study Guide</a>
+        <a href="exam.html" class="active">Practice Exam</a>
+        <a href="quiz.html">Mastery Quiz</a>
+        <a href="tracker.html">Progress Tracker</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="exam-gate">
+        <h1>75-Question Full-Length Mock Exam</h1>
+        <p>This module simulates a comprehensive, vendor-neutral evaluation modeled directly after the real GIS Certification Institute Pre-GISP configuration tracker.</p>
+        
+        <div class="meta-grid">
+            <div class="meta-box">
+                <div>75</div>
+                <div>Questions</div>
+            </div>
+            <div class="meta-box">
+                <div>120</div>
+                <div>Minutes Max</div>
+            </div>
+            <div class="meta-box">
+                <div>Proportional</div>
+                <div>Blueprint Weights</div>
+            </div>
+        </div>
+
+        <p style="color: #666; font-size: 0.95em; margin-bottom: 30px;">The assessment script engine will automatically distribute questions dynamically across your specified criteria weights (e.g., 18% Analytical Methods, 14% Conceptual Foundations).</p>
+        <button class="start-btn" onclick="alert('Exam system initialized! (Placeholder Integration Guide Complete)')">Initialize Live Testing Window</button>
+    </div>
+</div>
+
+</body>
+</html>
