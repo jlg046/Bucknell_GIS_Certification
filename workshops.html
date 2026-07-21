@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathway 2: Hands-On Workshops</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; }
+        .navbar { background-color: #002e62; border-bottom: 4px solid #ffb81c; padding: 15px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+        .nav-brand { color: #fff; font-size: 1.3em; font-weight: bold; }
+        .nav-brand span { color: #ffb81c; }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .nav-links a { color: #fff; text-decoration: none; padding: 8px 12px; border-radius: 4px; font-size: 0.9em; font-weight: 600; transition: background 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background-color: #ffb81c; color: #002e62; }
+        
+        .layout { display: flex; max-width: 1300px; margin: 30px auto; padding: 0 20px; gap: 25px; }
+        .sidebar { width: 280px; flex-shrink: 0; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 20px; }
+        .sidebar h3 { margin-top: 0; padding-bottom: 10px; border-bottom: 2px solid #eee; color: #002e62; font-size: 1.1em; }
+        .side-link { display: block; padding: 10px 12px; text-decoration: none; color: #555; border-radius: 4px; font-weight: 600; margin-bottom: 5px; font-size: 0.9em; cursor: pointer; transition: all 0.2s; }
+        .side-link:hover { background: #e1e7ed; color: #002e62; }
+        .side-link.active { background: #002e62; color: #fff; }
+        
+        .main-content { flex-grow: 1; min-width: 0; }
+        .workshop-panel { display: none; background: white; padding: 35px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .workshop-panel.active { display: block; }
+        
+        .meta-container { background: #f8fafc; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb81c; margin: 15px 0 25px 0; display: flex; flex-wrap: wrap; gap: 20px; }
+        .meta-item { font-size: 0.95em; }
+        .meta-item strong { color: #002e62; }
+        
+        h1, h2, h3, h4 { color: #002e62; }
+        h1 { margin-top: 0; }
+        h3 { border-bottom: 2px solid #002e62; padding-bottom: 5px; margin-top: 30px; }
+        hr { border: 0; height: 1px; background: #ddd; margin: 25px 0; }
+        
+        .script-box, .exercise-box { padding: 15px 20px; border-radius: 6px; margin: 15px 0; line-height: 1.6; }
+        .script-box { background-color: #f0f4f8; border-left: 4px solid #002e62; }
+        .exercise-box { background-color: #fffdf5; border-left: 4px solid #ffb81c; }
+        
+        ol, ul { line-height: 1.6; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .code-inline { background: #e1e7ed; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.95em; color: #c7254e; }
+        .formula-display { background: #e1e7ed; padding: 12px; border-radius: 4px; font-family: monospace; text-align: center; font-weight: bold; margin: 15px 0; color: #002e62; font-size: 1.1em; }
+        
+        @media(max-width: 900px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: auto; position: static; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-brand">Bucknell <span>GISP-E Portal</span></div>
+    <div class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="courses.html">BU Courses</a>
+        <a href="workshops.html" class="active">Hands-On Workshops</a>
+        <a href="online-training.html">Web Training</a>
+        <a href="study-guide.html">Study Guide</a>
+        <a href="exam.html">Practice Exam</a>
+        <a href="quiz.html">Mastery Quiz</a>
+        <a href="tracker.html">Progress Tracker</a>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 1300px; margin: 20px auto; padding: 0 20px;">
+    <h2>1-Hour Comprehensive In-Person Workshops Curriculum</h2>
+    <p>Offered by the Dominguez Center for Data Science. These modules combine interactive baseline theory with real software execution tracks.</p>
+</div>
+
+<div class="layout">
+    <div class="sidebar">
+        <h3>Workshop Modules</h3>
+        <div class="side-link active" onclick="showWk(1)">1. Geodesy & Coordinates</div>
+        <div class="side-link" onclick="showWk(2)">2. Data Models & Topology</div>
+        <div class="side-link" onclick="showWk(3)">3. Cartography & Selection</div>
+        <div class="side-link" onclick="showWk(4)">4. Remote Sensing & Pixels</div>
+        <div class="side-link" onclick="showWk(5)">5. Vector Overlay & Stats</div>
+        <div class="side-link" onclick="showWk(6)">6. Distributed Web GIS & Ethics</div>
+    </div>
+
+    <div class="main-content">
+        
+        <!-- WORKSHOP 1 -->
+        <div id="wk1" class="workshop-panel active">
+            <h1>Workshop 1: Geodesy, Datums, and Coordinate Systems</h1>
+            <div class="meta-container">
+                <div class="meta-item"><strong>GISCI Alignment:</strong> Category 2: Conceptual Foundations (14% Weight)</div>
+                <div class="meta-item"><strong>Software Environment:</strong> ArcGIS Pro (3.x)</div>
+            </div>
+
+            <h2>PART A: TEACHER'S MASTER INSTRUCTION GUIDE</h2>
+            <h4>1. Conceptual Whiteboard Script (0:00 - 0:15)</h4>
+            <div class="script-box">
+                Draw the three-tiered shape approximation of the Earth on the whiteboard:<br>
+                <strong>The Geoid:</strong> The actual physical surface of gravitational equal-potential (the irregular "potato" shape).<br>
+                <strong>The Reference Ellipsoid:</strong> The mathematically smoothed quadratic surface defined by its semi-major axis (a) and flattening (f).<br>
+                <strong>The Geodetic Datum:</strong> Connects the ellipsoid to the physical Earth. Explain the difference between local datums (e.g., NAD27, which match the surface locally) and Earth-centered datums (e.g., WGS84, which align with the Earth's center of mass).<br><br>
+                Next, write out the four primary projection distortions: <strong>SAPE</strong> (Shape / Conformal, Area / Equivalent, Persistence of Scale / Equidistant, Energy Direction / Azimuthal). Emphasize that a map can be Conformal or Equivalent, but never both.
+            </div>
+
+            <h4>2. Live Demonstration Instructions (0:15 - 0:25)</h4>
+            <ul>
+                <li>Launch ArcGIS Pro with an empty map. Note that the default coordinate system is Web Mercator (Auxiliary Sphere), which preserves angles but distorts area away from the equator.</li>
+                <li>Right-click Map -> Properties -> Coordinate Systems to show the active spatial reference environment.</li>
+            </ul>
+
+            <h4>3. Student Supervision & Troubleshooting Guidelines (0:25 - 0:55)</h4>
+            <p><strong>Common Bottleneck:</strong> Students may confuse Projecting on-the-fly (changing map view settings) with using the actual Project Geoprocessing Tool (creating a new data file with recalculated coordinates). Walk around the lab to ensure students run the Project tool for spatial operations that require accurate distance measurements.</p>
+
+            <h4>4. Wrap-up & Conceptual Review Questions (0:55 - 1:00)</h4>
+            <p><strong>Question:</strong> If you are calculating total acreage for a wildlife conservation zone, what family of map projection must you use?<br><strong>Answer:</strong> An Equal-Area (Equivalent) projection, such as the Albers Equal Area Conic.</p>
+
+            <hr>
+
+            <h2>PART B: STUDENT HANDOUT & EXERCISE GUIDE</h2>
+            <h4>1. Core Principles to Retain</h4>
+            <ul>
+                <li><strong>Horizontal Datums:</strong> Define (x,y) positioning across the surface (e.g., NAD83 for North America, WGS84 for global satellite positioning).</li>
+                <li><strong>Vertical Datums:</strong> Define (z) heights relative to a tidal or gravimetric baseline (e.g., NAVD88).</li>
+                <li><strong>Tissot's Indicatrix:</strong> A mathematical visualization method using small circles placed across a map grid to evaluate local scale distortion. On conformal maps, circles remain round but change in size; on equivalent maps, they stretch into ellipses but retain their original relative area.</li>
+            </ul>
+
+            <h4>2. Hands-on Click-Stream Exercise</h4>
+            <div class="exercise-box">
+                <ol>
+                    <li>Open ArcGIS Pro and create a blank project named <span class="code-inline">Workshop1_Geodesy</span>.</li>
+                    <li>In the Catalog Pane, expand your workspace folder, right-click, and select <strong>New -> Shapefile</strong>. Set the name to <span class="code-inline">Study_Area_Unprojected</span> and assign it a Geographic Coordinate System (<span class="code-inline">GCS_WGS_1984</span>).</li>
+                    <li>Add a text layer or reference boundary to your map. Notice how northern regions appear disproportionately large due to Web Mercator distortion.</li>
+                    <li>Open the Geoprocessing Pane (Analysis tab -> Tools). Search for and open the <strong>Project</strong> tool.</li>
+                    <li>Set parameters: Input: <span class="code-inline">Study_Area_Unprojected</span> | Output: <span class="code-inline">Study_Area_Projected_UTM</span> | Output Coordinate System: Select <strong>NAD 1983 UTM Zone 18N</strong>.</li>
+                    <li>Click <strong>Run</strong>. Right-click the new layer, check its source properties, and observe the linear unit shift from decimal degrees to meters.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- WORKSHOP 2 -->
+        <div id="wk2" class="workshop-panel">
+            <h1>Workshop 2: Geospatial Data Models and Structural Topology</h1>
+            <div class="meta-container">
+                <div class="meta-item"><strong>GISCI Alignment:</strong> Category 3: Data Modeling (12%) & Category 4: Geospatial Data (11%)</div>
+                <div class="meta-item"><strong>Software Environment:</strong> ArcGIS Pro (3.x)</div>
+            </div>
+
+            <h2>PART A: TEACHER'S MASTER INSTRUCTION GUIDE</h2>
+            <h4>1. Conceptual Whiteboard Script (0:00 - 0:15)</h4>
+            <div class="script-box">
+                Draw a 4x4 raster grid next to a vector polygon on the board. Contrast discrete vector features (explicit coordinate boundaries) with continuous raster models (a uniform grid of grid cells, where each cell contains a single value representing a phenomena like elevation or temperature).<br><br>
+                Write down the three foundational tenets of spatial topology:
+                <ul>
+                    <li><strong>Adjacency:</strong> Which polygons share borders?</li>
+                    <li><strong>Containment:</strong> Which features lie inside another feature's boundary?</li>
+                    <li><strong>Connectivity:</strong> How are arcs or line lines linked at intersections?</li>
+                </ul>
+                Explain that topology is mathematical and does not change even if the map is stretched or projected.
+            </div>
+
+            <h4>2. Live Demonstration Instructions (0:15 - 0:25)</h4>
+            <ul>
+                <li>Open an active file geodatabase (.gdb).</li>
+                <li>Right-click the geodatabase, choose New -> Feature Dataset (explain that a feature dataset is required to build a topology network). Create a topology rule like "Must Not Overlap" to show how ArcGIS identifies structural spatial errors.</li>
+            </ul>
+
+            <h4>3. Student Supervision & Troubleshooting Guidelines (0:25 - 0:55)</h4>
+            <p>Watch for students editing features without enabling topology validation. Remind them to click the Validate button in the Edit tab to see if any topology rules were broken.</p>
+
+            <h4>4. Wrap-up & Conceptual Review Questions (0:55 - 1:00)</h4>
+            <p><strong>Question:</strong> If a line dataset representing a stream network contains lines that cross without a node, or dead-end short of their target, what topological errors have occurred?<br><strong>Answer:</strong> Overshoots and undershoots (dangling nodes).</p>
+
+            <hr>
+
+            <h2>PART B: STUDENT HANDOUT & EXERCISE GUIDE</h2>
+            <h4>1. Core Principles to Retain</h4>
+            <ul>
+                <li><strong>RDBMS:</strong> Store geospatial attribute tables. Tabular joins require a Primary Key in the destination table and a Foreign Key in the source table.</li>
+                <li><strong>Cardinality:</strong> Defines relationship configurations between datasets:
+                    <br>• <strong>One-to-One (1:1):</strong> One parcel record matches one address.
+                    <br>• <strong>One-to-Many (1:M):</strong> One state contains many counties (requires a Relate or Relationship Class rather than a standard Join).
+                </li>
+            </ul>
+
+            <h4>2. Hands-on Click-Stream Exercise</h4>
+            <div class="exercise-box">
+                <ol>
+                    <li>Create a project named <span class="code-inline">Workshop2_Topology</span>.</li>
+                    <li>Right-click your GDB, choose <strong>New -> Feature Dataset</strong>, and name it <span class="code-inline">Infrastructure</span>. Set its coordinate reference system to your local UTM zone.</li>
+                    <li>Import your administrative boundary shapefiles into this dataset.</li>
+                    <li>Right-click Infrastructure, select <strong>New -> Topology</strong>. Name it <span class="code-inline">Boundary_Topology</span>.</li>
+                    <li>Add your administrative polygon layer, click Next, and click <strong>Add Rule</strong>. Select <strong>Must Not Have Gaps</strong>. Add a second rule for <strong>Must Not Overlap</strong>. Click Finish.</li>
+                    <li>Add the topology layer to your map, click the Edit tab, open the <strong>Error Inspector</strong>, and click <strong>Validate Full Extent</strong> to view geometric errors highlighted in red.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- WORKSHOP 3 -->
+        <div id="wk3" class="workshop-panel">
+            <h1>Workshop 3: Cartography, Symbology, and Quantitative Classification</h1>
+            <div class="meta-container">
+                <div class="meta-item"><strong>GISCI Alignment:</strong> Category 5: Cartography & Visualization (10% Weight)</div>
+                <div class="meta-item"><strong>Software Environment:</strong> ArcGIS Pro (3.x)</div>
+            </div>
+
+            <h2>PART A: TEACHER'S MASTER INSTRUCTION GUIDE</h2>
+            <h4>1. Conceptual Whiteboard Script (0:00 - 0:15)</h4>
+            <div class="script-box">
+                Draw a simple number line containing clustered data points. Use this to illustrate three major classification styles:
+                <ul>
+                    <li><strong>Equal Interval:</strong> Divides the range of attribute values into equal-sized sub-ranges. (Show how this ignores data clusters).</li>
+                    <li><strong>Quantile:</strong> Places an equal number of features into each class category. (Show how this can place very different values in the same class).</li>
+                    <li><strong>Natural Breaks (Jenks):</strong> Minimizes variance within classes while maximizing variance between classes by finding natural groupings in the data.</li>
+                </ul>
+            </div>
+
+            <h4>2. Live Demonstration Instructions (0:15 - 0:25)</h4>
+            <ul>
+                <li>Add a population density polygon layer to a map layout.</li>
+                <li>Open the Symbology Pane and switch between Equal Interval, Quantile, and Jenks Natural Breaks. Point out how the visual narrative of the map changes drastically based on the classification method chosen.</li>
+            </ul>
+
+            <h4>3. Student Supervision & Troubleshooting Guidelines (0:25 - 0:55)</h4>
+            <p><strong>Key Concept:</strong> Remind students that raw counts (e.g., total population) should not be mapped using choropleth symbolization without first normalizing the data (e.g., dividing by square miles to map population density). Otherwise, larger geographic areas will look artificially prominent.</p>
+
+            <h4>4. Wrap-up & Conceptual Review Questions (0:55 - 1:00)</h4>
+            <p><strong>Question:</strong> Which classification method should you use if you want to group data so that every map class contains the exact same number of counties?<br><strong>Answer:</strong> Quantile Classification.</p>
+
+            <hr>
+
+            <h2>PART B: STUDENT HANDOUT & EXERCISE GUIDE</h2>
+            <h4>1. Core Principles to Retain</h4>
+            <ul>
+                <li><strong>Visual Variables (Jacques Bertin):</strong> Shape, size, orientation, color hue, color value (lightness), color saturation, and texture. Hue is best for qualitative data (e.g., soil types); value and size are best for quantitative data (e.g., population rates).</li>
+                <li><strong>Map Generalization Operations:</strong>
+                    <br>• <strong>Simplification:</strong> Removing vertex density from complex lines.
+                    <br>• <strong>Aggregation:</strong> Combining separate adjacent bodies into a single feature.
+                    <br>• <strong>Displacement:</strong> Purposely shifting features apart so they remain visible at smaller display scales.
+                </li>
+            </ul>
+
+            <h4>2. Hands-on Click-Stream Exercise</h4>
+            <div class="exercise-box">
+                <ol>
+                    <li>Open a project containing demographic polygon data. Right-click the layer and select <strong>Symbology</strong>.</li>
+                    <li>In the Symbology pane, change the Primary Symbology dropdown to <strong>Graduated Colors</strong>.</li>
+                    <li>Set the Field property to your raw population variable (e.g., <span class="code-inline">POP_2026</span>). Note the normalization warning.</li>
+                    <li>Set the <strong>Normalization</strong> dropdown option to your area field (e.g., <span class="code-inline">SQ_MILES</span>).</li>
+                    <li>Change the Method dropdown to <strong>Natural Breaks (Jenks)</strong> and set the class count to 5. Examine the distribution histogram, then switch to <strong>Quantile</strong> to observe the spatial distortion shift.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- WORKSHOP 4 -->
+        <div id="wk4" class="workshop-panel">
+            <h1>Workshop 4: Remote Sensing, Image Processing, and Pixels</h1>
+            <div class="meta-container">
+                <div class="meta-item"><strong>GISCI Alignment:</strong> Category 6: Platforms, Sensors, Principles (10% Weight)</div>
+                <div class="meta-item"><strong>Software Environment:</strong> ArcGIS Pro (3.x)</div>
+            </div>
+
+            <h2>PART A: TEACHER'S MASTER INSTRUCTION GUIDE</h2>
+            <h4>1. Conceptual Whiteboard Script (0:00 - 0:15)</h4>
+            <div class="script-box">
+                Draw the electromagnetic spectrum on the whiteboard. Label Ultraviolet, Visible (Blue, Green, Red), Near-Infrared (NIR), Shortwave Infrared (SWIR), and Thermal Infrared.<br><br>
+                Explain the four types of resolution that define any sensor platform:
+                <ul>
+                    <li><strong>Spatial Resolution:</strong> Pixel size grid dimensions (e.g., 30m Landsat vs. 10m Sentinel).</li>
+                    <li><strong>Spectral Resolution:</strong> The number of fine wavelength bands captured by the sensor.</li>
+                    <li><strong>Radiometric Resolution:</strong> The bit-depth storing data per pixel (e.g., 8-bit = 256 levels; 16-bit = 65,536 levels).</li>
+                    <li><strong>Temporal Resolution:</strong> The revisit frequency cycle of the satellite platform over a given spot.</li>
+                </ul>
+            </div>
+
+            <h4>2. Live Demonstration Instructions (0:15 - 0:25)</h4>
+            <ul>
+                <li>Load a composite multispectral image layer.</li>
+                <li>Open the Symbology Pane to demonstrate band reassignment. Change the band combination from True Color to False Color Infrared (Red=NIR, Green=Red, Blue=Green), showing how healthy vegetation reflects strongly in the near-infrared band and appears bright red.</li>
+            </ul>
+
+            <h4>3. Student Supervision & Troubleshooting Guidelines (0:25 - 0:55)</h4>
+            <p>Ensure students select the correct input bands when using the Raster Calculator to calculate NDVI. The formula is strictly:</p>
+            <div class="formula-display">NDVI = (NIR - Red) / (NIR + Red)</div>
+
+            <h4>4. Wrap-up & Conceptual Review Questions (0:55 - 1:00)</h4>
+            <p><strong>Question:</strong> Why does healthy vegetation appear bright red in a traditional False-Color Infrared satellite image composite?<br><strong>Answer:</strong> The Near-Infrared band is mapped to the red display channel, and healthy plant leaves reflect highly in the NIR spectrum due to their internal spongy mesophyll structure.</p>
+
+            <hr>
+
+            <h2>PART B: STUDENT HANDOUT & EXERCISE GUIDE</h2>
+            <h4>1. Core Principles to Retain</h4>
+            <ul>
+                <li><strong>Active vs. Passive Sensors:</strong> Passive sensors collect naturally reflected solar energy (e.g., Landsat). Active sensors generate their own energy pulse and measure the return echo bounce (e.g., LiDAR, RADAR).</li>
+                <li><strong>Image Classification:</strong>
+                    <br>• <strong>Supervised:</strong> The user draws training samples over known cover types to train the classification algorithm.
+                    <br>• <strong>Unsupervised:</strong> The software groups pixels into clusters based on statistical spectral similarities without user input.
+                </li>
+            </ul>
+
+            <h4>2. Hands-on Click-Stream Exercise</h4>
+            <div class="exercise-box">
+                <ol>
+                    <li>Create a project named <span class="code-inline">Workshop4_RemoteSensing</span> and import a multispectral scene layer.</li>
+                    <li>Select your image layer in the Contents pane, and click the <strong>Imagery</strong> context tab on the main ribbon.</li>
+                    <li>Click the <strong>Raster Functions</strong> button. Expand the Math category and select <strong>NDVI</strong>.</li>
+                    <li>Set the parameters: Visible Band = Red channel (Band 4 for Landsat 8) | Infrared Band = Near-Infrared channel (Band 5 for Landsat 8).</li>
+                    <li>Check the box for <strong>Scientific Output</strong> (scales values strictly between -1.0 and +1.0) and click <strong>Create New Layer</strong>. Review your output canopy maps.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- WORKSHOP 5 -->
+        <div id="wk5" class="workshop-panel">
+            <h1>Workshop 5: Vector Analysis, Geoprocessing, and Spatial Statistics</h1>
+            <div class="meta-container">
+                <div class="meta-item"><strong>GISCI Alignment:</strong> Category 1: Analytical Methods & GeoComputation (18% Weight)</div>
+                <div class="meta-item"><strong>Software Environment:</strong> ArcGIS Pro (3.x)</div>
+            </div>
+
+            <h2>PART A: TEACHER'S MASTER INSTRUCTION GUIDE</h2>
+            <h4>1. Conceptual Whiteboard Script (0:00 - 0:15)</h4>
+            <div class="script-box">
+                Draw two overlapping circle features on the board (A and B). Use them to illustrate the mathematical difference between vector overlay tools:
+                <ul>
+                    <li><strong>Intersect:</strong> Keeps only the areas where features overlap (A ∩ B). Attributes from both layers are combined.</li>
+                    <li><strong>Union:</strong> Keeps all areas from both layers (A ∪ B), combining them into a new output feature class.</li>
+                    <li><strong>Clip (Cookie-Cutter):</strong> Cuts out a piece of one layer using the boundary of another. Features are clipped, but no attributes from the clipping layer are transferred.</li>
+                </ul>
+            </div>
+
+            <h4>2. Live Demonstration Instructions (0:15 - 0:25)</h4>
+            <ul>
+                <li>Open the Geoprocessing Search Tab and demonstrate how to search for analytical tools.</li>
+                <li>Run a spatial query using Select Layer By Location to select features within a certain distance of another layer. Show how this creates a selection highlight without creating a new file on disk.</li>
+            </ul>
+
+            <h4>3. Student Supervision & Troubleshooting Guidelines (0:25 - 0:55)</h4>
+            <p>Make sure students understand that Clip and Intersect do different things with attribute tables. Intersect combines attributes from both tables, while Clip only keeps attributes from the input layer.</p>
+
+            <h4>4. Wrap-up & Conceptual Review Questions (0:55 - 1:00)</h4>
+            <p><strong>Question:</strong> If you combine an environmental risk zone layer with a property parcel layer, and you want an output that includes all geometry and attributes from both layers, which geoprocessing tool should you run?<br><strong>Answer:</strong> The Union tool.</p>
+
+            <hr>
+
+            <h2>PART B: STUDENT HANDOUT & EXERCISE GUIDE</h2>
+            <h4>1. Core Principles to Retain</h4>
+            <ul>
+                <li><strong>First Law of Geography (Tobler):</strong> "Everything is related to everything else, but near things are more related than distant things." This principle forms the foundation for spatial autocorrelation and interpolation.</li>
+                <li><strong>Spatial Autocorrelation (Moran's I):</strong> Measures how clustered or dispersed data is across an area. Positive values indicate clustering; negative values indicate dispersion.</li>
+                <li><strong>Spatial Interpolation:</strong> Estimates unknown values at unsampled locations using measurements from surrounding sample points (e.g., IDW, Kriging).</li>
+            </ul>
+
+            <h4>2. Hands-on Click-Stream Exercise</h4>
+            <div class="exercise-box">
+                <ol>
+                    <li>Open a map project containing point data for water quality sample locations. Open the <strong>Geoprocessing</strong> pane.</li>
+                    <li>Search for and open the <strong>Buffer</strong> tool. Set sample points as input, name the output <span class="code-inline">Samples_100m_Buffer</span>, and set the distance to <strong>100 Meters</strong>. Click Run.</li>
+                    <li>Search for the <strong>Intersect</strong> tool in the Geoprocessing pane.</li>
+                    <li>Set parameters: Input Features: Select your new buffer layer and a land-use zoning polygon layer | Output Feature Class: <span class="code-inline">Zoning_Buffer_Intersection</span>.</li>
+                    <li>Click <strong>Run</strong>. Open the attribute table of your new output layer to confirm it contains fields from both input tables.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- WORKSHOP 6 -->
+        <div id="wk6" class="workshop-panel">
+            <h1>Workshop 6: Distributed Web GIS, Cloud Architectures, and Ethics</h1>
+            <div class="meta-container">
+                <div class="meta-item"><strong>GISCI Alignment:</strong> Web-Based GIS (2%), Systems Design (8%), GI & Society (3%)</div>
+                <div class="meta-item"><strong>Software Environment:</strong> ArcGIS Online Ecosystem</div>
+            </div>
+
+            <h2>PART A: TEACHER'S MASTER INSTRUCTION GUIDE</h2>
+            <h4>1. Conceptual Whiteboard Script (0:00 - 0:15)</h4>
+            <div class="script-box">
+                Sketch a classic Three-Tier Enterprise GIS Architecture on the board:<br>
+                <strong>Client Tier:</strong> Web browsers, mobile apps, desktop GIS software.<br>
+                <strong>Server Tier:</strong> Application servers that handle web data processes (e.g., ArcGIS Server).<br>
+                <strong>Data Tier:</strong> Enterprise relational databases (e.g., PostgreSQL, SQL Server).<br><br>
+                Write down the open web service standards developed by the Open Geospatial Consortium (OGC):
+                <ul>
+                    <li><strong>WMS (Web Map Service):</strong> Returns static, pre-rendered map images.</li>
+                    <li><strong>WFS (Web Feature Service):</strong> Returns actual vector feature geometries and editable attributes.</li>
+                    <li><strong>WCS (Web Coverage Service):</strong> Returns raw, uncompressed raster cell values (e.g., DEM elevation pixels).</li>
+                </ul>
+            </div>
+
+            <h4>2. Live Demonstration Instructions (0:15 - 0:25)</h4>
+            <ul>
+                <li>Log in to your institutional ArcGIS Online portal account.</li>
+                <li>Share a map layer from ArcGIS Pro up to your portal. Explain the difference between sharing data as a flat, pre-rendered Tile Layer versus an interactive, queryable Hosted Feature Layer.</li>
+            </ul>
+
+            <h4>3. Student Supervision & Troubleshooting Guidelines (0:25 - 0:55)</h4>
+            <p>Help students configure sharing permissions correctly. Ensure they understand that keeping an item set to Owner or Organization restricts access, while setting it to Public allows anyone on the internet to view and query the service.</p>
+
+            <h4>4. Wrap-up & Conceptual Review Questions (0:55 - 1:00)</h4>
+            <p><strong>Question:</strong> If a government agency needs to share geographic boundaries over the web so that users can download the raw vector geometry and edit attribute values locally, which web service standard should they use?<br><strong>Answer:</strong> An OGC-compliant Web Feature Service (WFS).</p>
+
+            <hr>
+
+            <h2>PART B: STUDENT HANDOUT & EXERCISE GUIDE</h2>
+            <h4>1. Core Principles to Retain</h4>
+            <ul>
+                <li><strong>RESTful APIs:</strong> Allow web maps to communicate with servers using standardized URLs.</li>
+                <li><strong>GISCI Code of Ethics Principles:</strong>
+                    <br>• <strong>Duty to Society:</strong> Provide accurate data, respect privacy, and do not use spatial data to discriminate against groups of people.
+                    <br>• <strong>Duty to Employers/Clients:</strong> Disclose any conflicts of interest and acknowledge data limitations or uncertainties.
+                </li>
+            </ul>
+
+            <h4>2. Hands-on Click-Stream Exercise</h4>
+            <div class="exercise-box">
+                <ol>
+                    <li>Open your workspace project in ArcGIS Pro. Ensure you are signed into your Bucknell organizational account.</li>
+                    <li>In the Share ribbon tab, click <strong>Web Layer -> Publish Web Layer</strong>.</li>
+                    <li>In the configuration window, name it: <span class="code-inline">Bucknell_Campus_Resources_YourInitials</span> | Layer Type: Select <strong>Feature</strong>.</li>
+                    <li>Under the Configuration tab, ensure the operations are limited to <strong>Query</strong> only.</li>
+                    <li>Click <strong>Analyze</strong> to check for errors. If clean, click <strong>Publish</strong>. Log into your ArcGIS Online browser account to confirm the layer works in Map Viewer.</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function showWk(num) {
+        document.querySelectorAll('.workshop-panel').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.side-link').forEach(el => el.classList.remove('active'));
+        document.getElementById('wk' + num).classList.add('active');
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
