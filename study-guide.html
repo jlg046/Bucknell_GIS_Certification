@@ -1,9 +1,29 @@
+---
+layout: default
+title: "Pathway 4: High-Yield Study Guide"
+permalink: /pathway-4/5-study-guide/
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathway 3: Web-Based Training Courses</title>
+    <title>Pathway 4: High-Yield Study Guide</title>
+    
+    <!-- MathJax for rendering LaTeX formulas natively on GitHub Pages -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; }
         .navbar { background-color: #002e62; border-bottom: 4px solid #ffb81c; padding: 15px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
@@ -14,10 +34,13 @@
         .nav-links a:hover, .nav-links a.active { background-color: #ffb81c; color: #002e62; }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
         .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
-        .card h2 { margin-top: 0; color: #002e62; border-bottom: 2px solid #ffb81c; padding-bottom: 8px; }
-        .badge { background: #002e62; color: #ffb81c; padding: 3px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
+        .card h2 { margin-top: 0; color: #002e62; border-bottom: 2px solid #ffb81c; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .badge { background: #002e62; color: #ffb81c; padding: 3px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; white-space: nowrap; }
         ul { padding-left: 20px; line-height: 1.6; }
         li { margin-bottom: 12px; }
+        .sub-list { list-style-type: circle; margin-top: 6px; }
+        .sub-list li { margin-bottom: 6px; }
+        .formula-box { background-color: #f8f9fa; border-left: 4px solid #002e62; padding: 15px; margin: 15px 0; text-align: center; font-size: 1.1em; border-radius: 0 4px 4px 0; }
     </style>
 </head>
 <body>
@@ -28,8 +51,8 @@
         <a href="index.html">Overview</a>
         <a href="courses.html">BU Courses</a>
         <a href="workshops.html">Hands-On Workshops</a>
-        <a href="online-training.html" class="active">Web Training</a>
-        <a href="study-guide.html">Study Guide</a>
+        <a href="online-training.html">Web Training</a>
+        <a href="study-guide.html" class="active">Study Guide</a>
         <a href="exam.html">Practice Exam</a>
         <a href="quiz.html">Mastery Quiz</a>
         <a href="tracker.html">Progress Tracker</a>
@@ -37,24 +60,156 @@
 </nav>
 
 <div class="container">
-    <h1>Pathway 3: Web-Based, Self-Paced Training Courses</h1>
-    <p>Utilize online learning frameworks to bolster your alignment with the 11 core blueprint competencies.</p>
+    <h1>Pathway 4: High-Yield Study Guide</h1>
+    <p>This high-yield outline is designed for students to review before taking mock exams.</p>
 
+    <!-- Domain 1 -->
     <div class="card">
-        <h2>Esri Web-Based Training Courses <span class="badge">ArcGIS Ecosystem</span></h2>
-        <p><strong>Targeted Learning Pathways:</strong> Curated self-paced courses from the Esri Academy that align with specific blueprint categories (such as coordinate systems, cartography, or relational database design).</p>
+        <h2>Domain 1: Analytical Methods &amp; GeoComputation <span class="badge">18%</span></h2>
         <ul>
-            <li><strong>Goal:</strong> Leverage free or institutional-license Bucknell Esri accounts to build fundamental technical skills in a structured workspace.</li>
-            <li><strong>Strategy:</strong> Complete targeted modules that provide official certificates of completion to attach to your portfolio logs.</li>
+            <li><strong>Spatial Autocorrelation:</strong> Evaluates how features are clustered, dispersed, or random across space. Know the difference between global metrics (Moran’s $I$) and local metrics (Anselin Local Moran’s $I$, Getis-Ord $Gi^*$).</li>
+            <li><strong>Interpolation:</strong> Predicting values at unsampled locations. Know the differences between deterministic models (IDW, Splines) and geostatistical models (Kriging, which accounts for spatial autocorrelation and yields error variances).</li>
+            <li><strong>Overlay Analysis:</strong> Vector overlay combines geometries and attributes (Intersection is an "AND" relationship; Union is an "OR" relationship). Raster overlay requires matching grid resolution, alignment (snapping), and standardized scales (Weighted Linear Combination).</li>
         </ul>
     </div>
 
+    <!-- Domain 2 -->
     <div class="card">
-        <h2>Non-Esri Web-Based Training Courses <span class="badge">Vendor-Neutral</span></h2>
-        <p><strong>Platform-Agnostic Mastery:</strong> Because the GISP-E examination is strictly vendor-neutral, students must study open-access materials, QGIS core documentation tutorials, spatial data science MOOCs, and open textbook chapters.</p>
+        <h2>Domain 2: Conceptual Foundations <span class="badge">14%</span></h2>
         <ul>
-            <li><strong>Goal:</strong> Ensure students understand deep theoretical concepts (e.g., spatial overlay joins, raster cell algorithms, topological rules) rather than just memorizing "which software button to click."</li>
-            <li><strong>Primary Text Resource:</strong> Cross-reference concepts with the official <em>Geographic Information Science & Technology Body of Knowledge (UCGIS BoK)</em>.</li>
+            <li><strong>Datums:</strong> Define the origin point and orientation of coordinate systems. Understand the difference between local datums (NAD27, optimized for North America) and geocentric/global datums (WGS84, NAD83, centered at the Earth's mass center).</li>
+            <li><strong>Projections:</strong> Flattening the 3D ellipsoid onto a 2D plane. No flat projection can maintain all properties. Remember the trade-offs:
+                <ul class="sub-list">
+                    <li><strong>Conformal (e.g., Mercator):</strong> Preserves local angles and shapes; distorts size.</li>
+                    <li><strong>Equivalent/Equal-Area (e.g., Albers Equal Area):</strong> Preserves area/size; distorts shape and angles.</li>
+                    <li><strong>Equidistant:</strong> Preserves true distance along specific lines.</li>
+                    <li><strong>Azimuthal:</strong> Preserves direction from a central point.</li>
+                </ul>
+            </li>
+            <li><strong>Ellipsoid vs. Geoid:</strong> The ellipsoid is a smooth, mathematically simplified 3D representation of Earth's shape. The geoid represents the irregular surface of constant gravitational potential (approximately mean sea level).</li>
+        </ul>
+    </div>
+
+    <!-- Domain 3 -->
+    <div class="card">
+        <h2>Domain 3: Data Modeling <span class="badge">12%</span></h2>
+        <ul>
+            <li><strong>Data Models:</strong> Vectors represent discrete objects using coordinates ($x, y$). Rasters represent continuous surfaces using regular grid cells.</li>
+            <li><strong>Database Normalization:</strong> Process of structuring a relational database to reduce data redundancy and improve data integrity.
+                <ul class="sub-list">
+                    <li><strong>1NF:</strong> Eliminate repeating groups; ensure atomic (indivisible) values.</li>
+                    <li><strong>2NF:</strong> Meet 1NF and ensure all non-key attributes are fully functionally dependent on the primary key (no partial dependencies).</li>
+                    <li><strong>3NF:</strong> Meet 2NF and ensure non-key attributes do not depend transitively on other non-key attributes.</li>
+                </ul>
+            </li>
+            <li><strong>Spatial Indexing:</strong> Acceleration structures for spatial queries (e.g., R-Tree, which groups objects using minimum bounding rectangles, or Quadtrees, which recursively partition spaces into quadrants).</li>
+        </ul>
+    </div>
+
+    <!-- Domain 4 -->
+    <div class="card">
+        <h2>Domain 4: Geospatial Data <span class="badge">11%</span></h2>
+        <ul>
+            <li><strong>Metadata:</strong> Structured data about data. Standards include FGDC (US Federal Geographic Data Committee) and ISO 19115 (Geographic Information - Metadata).</li>
+            <li><strong>Open Formats:</strong> GeoJSON (JSON-based, text format for web), GeoPackage (SQLite-based database format), and Shapefile (older multi-file format with a 2GB size limitation and 10-character field limit).</li>
+            <li><strong>Data Quality:</strong> Accurate data is close to the true value. Precise data is highly detailed or consistent. Logical consistency checks if spatial relationships within the dataset make topological sense (e.g., polygons do not overlap if they represent parcel boundaries).</li>
+        </ul>
+    </div>
+
+    <!-- Domain 5 -->
+    <div class="card">
+        <h2>Domain 5: Cartography &amp; Visualization <span class="badge">10%</span></h2>
+        <ul>
+            <li><strong>Visual Variables:</strong> The properties of a map symbol that dictate how it is interpreted (size represents quantitative data, shape represents qualitative/categorical data, color hue represents categories, and color value/saturation represents order or quantities).</li>
+            <li><strong>Data Classification:</strong>
+                <ul class="sub-list">
+                    <li><strong>Natural Breaks (Jenks):</strong> Sets boundaries where there are natural groupings and gaps in the data values.</li>
+                    <li><strong>Quantile:</strong> Assigns an equal number of features to each class; hides outliers but can overstate variations.</li>
+                    <li><strong>Equal Interval:</strong> Divides the range of attribute values into equal-sized sub-ranges.</li>
+                    <li><strong>Standard Deviation:</strong> Shows how much a feature's attribute value varies from the mean.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Domain 6 -->
+    <div class="card">
+        <h2>Domain 6: Platforms, Sensors, Physical Principles, Image Processing &amp; Analysis <span class="badge">10%</span></h2>
+        <ul>
+            <li><strong>Resolutions:</strong>
+                <ul class="sub-list">
+                    <li><strong>Spatial:</strong> Grid cell size representing the ground surface (e.g., 30m vs. 1m).</li>
+                    <li><strong>Spectral:</strong> The number and width of electromagnetic bands recorded.</li>
+                    <li><strong>Temporal:</strong> Revisit time of the sensor over the same spot on Earth.</li>
+                    <li><strong>Radiometric:</strong> Bit depth of the sensor (e.g., 8-bit can represent 256 gray values; 16-bit can represent 65,536).</li>
+                </ul>
+            </li>
+            <li><strong>Active vs. Passive Sensors:</strong> Active sensors emit their own electromagnetic energy to illuminate the target (LiDAR, Radar). Passive sensors record naturally occurring energy reflected or emitted from the Earth (Landsat, Sentinel multispectral).</li>
+            <li><strong>NDVI:</strong> Normalized Difference Vegetation Index. Highly reflective in NIR (Near-Infrared) and highly absorptive in Red bands due to chlorophyll.</li>
+        </ul>
+        <div class="formula-box">
+            $$NDVI = \frac{NIR - Red}{NIR + Red}$$
+        </div>
+    </div>
+
+    <!-- Domain 7 -->
+    <div class="card">
+        <h2>Domain 7: Design of Systems <span class="badge">8%</span></h2>
+        <ul>
+            <li><strong>Enterprise Architecture:</strong> Multi-tier systems typically consisting of:
+                <ul class="sub-list">
+                    <li><strong>Data Tier (Database):</strong> Spatial RDBMS (e.g., PostgreSQL/PostGIS) managing geometries and attributes.</li>
+                    <li><strong>Application Tier (Server):</strong> Processes spatial logic and serves map data as web resources.</li>
+                    <li><strong>Presentation Tier (Client):</strong> Desktop GIS, web browsers, or mobile apps displaying the map and running UI interactions.</li>
+                </ul>
+            </li>
+            <li><strong>OGC Standards:</strong> Open Geospatial Consortium standards facilitate interoperability:
+                <ul class="sub-list">
+                    <li><strong>WMS (Web Map Service):</strong> Returns georeferenced map images (PNG, JPG).</li>
+                    <li><strong>WFS (Web Feature Service):</strong> Returns actual vector geometries and attributes (XML/GML, JSON).</li>
+                    <li><strong>WCS (Web Coverage Service):</strong> Returns multidimensional grid raster data (GeoTIFF, NetCDF).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Domain 8 -->
+    <div class="card">
+        <h2>Domain 8: Organizational &amp; Institutional Aspects <span class="badge">7%</span></h2>
+        <ul>
+            <li><strong>Project Management:</strong> Adapting project management structures (like the System Development Life Cycle or Agile methodologies) specifically to geospatial databases, ensuring quality assurance (QA) and quality control (QC).</li>
+            <li><strong>Ethics:</strong> The GISCI Code of Ethics dictates professional behavior, including honesty to the public, integrity in presenting data limitations, and securing data privacy.</li>
+        </ul>
+    </div>
+
+    <!-- Domain 9 -->
+    <div class="card">
+        <h2>Domain 9: Thematic &amp; Application Domains <span class="badge">5%</span></h2>
+        <ul>
+            <li>Understand spatial analytical use cases across urban planning (zoning, suitability), conservation (watershed delineation, habitat connectivity), public health (epidemiology clustering), and business (geomarketing, gravity models).</li>
+        </ul>
+    </div>
+
+    <!-- Domain 10 -->
+    <div class="card">
+        <h2>Domain 10: GI &amp; Society <span class="badge">3%</span></h2>
+        <ul>
+            <li><strong>Privacy:</strong> The rise of GPS tracking, location-based services (LBS), and high-resolution imagery raises significant concerns around location privacy. Understand techniques like geomasking and anonymization.</li>
+            <li><strong>Participatory GIS (PGIS):</strong> Incorporating community knowledge and public participation into geographic decision-making to address environmental justice and community needs.</li>
+        </ul>
+    </div>
+
+    <!-- Domain 11 -->
+    <div class="card">
+        <h2>Domain 11: Web-Based GIS <span class="badge">2%</span></h2>
+        <ul>
+            <li><strong>Architecture:</strong> Relying on client-server protocols. Clients query databases via REST (Representational State Transfer) APIs.</li>
+            <li><strong>Web Tiles:</strong>
+                <ul class="sub-list">
+                    <li><strong>Raster Tiles:</strong> Pre-rendered map images stored on the server; faster rendering but static design.</li>
+                    <li><strong>Vector Tiles:</strong> Vector data packaged into standardized chunks and sent to the client, which handles the cartographic styling dynamically.</li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
